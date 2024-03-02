@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Calendar Events</title>
+    <!-- Include any additional stylesheets or scripts if needed -->
+</head>
+<body>
+    <h1>Google Calendar Events</h1>
+
+    <% if (events && events.length > 0) { %>
+        <ul>
+            <% events.forEach(event => { %>
+                <li>
+                    <strong><%= event.summary %></strong>
+                    <p>Start Time: <%= event.start.dateTime || event.start.date %></p>
+                    <p>End Time: <%= event.end.dateTime || event.end.date %></p>
+                    <!-- Add more event details as needed -->
+                </li>
+            <% }); %>
+        </ul>
+    <% } else { %>
+        <p>No events found.</p>
+    <% } %>
+
+    <!-- Add any additional HTML content or scripts as needed -->
+</body>
+</html>

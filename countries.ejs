@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>REST Countries API</title>
+</head>
+<body>
+  <h1>REST Countries</h1>
+  <ul>
+    <% countries.forEach(country => { %>
+      <li>
+        <strong>Name:</strong> <%= country.name.common %><br>
+        <strong>Capital:</strong> <%= country.capital %><br>
+        <strong>Region:</strong> <%= country.region %><br>
+        <strong>Population:</strong> <%= country.population %><br>
+        <strong>Flag:</strong> <img src="<%= country.flags.svg %>" alt="<%= country.name.common %> flag" width="100">
+      </li>
+    <% }); %>
+  </ul>
+</body>
+</html>

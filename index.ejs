@@ -1,0 +1,26 @@
+<div class="author">
+    <h1 class="author_heading"> Portfolio Platform</h1>
+    <p class="author_body">Place your portfolio and share it with everyone! </p>
+</div>
+
+<img src="/img/portfolio.jpg" alt="blog img" class="blog_main_pg" width="981" height="528">
+<section class="users">
+    <h2 class="users_heading">Latest User</h2>
+    <ul class="user_ul">
+
+        <% data.forEach(post => { %>
+         <li>
+            <a href="/post/<%= post._id %>" target="_blank">
+                <span><%= post.name %></span>
+                <span><%= post.information %></span>
+                <span class="user-list_date"><%= post.createdAt.toDateString() %></span>
+            </a>
+        </li>
+        <% }) %>
+    </ul>
+
+    <% if (nextPage !== null) { %>
+        <a href="/?page=<%= nextPage %>" class="pagination">&lt; View previous portfolio</a>
+    <% } %>
+    
+</section>

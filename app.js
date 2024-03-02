@@ -1,20 +1,36 @@
 require('dotenv').config();
 const express = require("express");
 const expressLayout = require('express-ejs-layouts');
+const methodOverride = require('method-override');
 const cookieParser = require('cookie-parser');
 const MongoStore = require('connect-mongo');
 
 const connectDB = require('./server/config/db');
 const session = require('express-session');
-
 const app = express();
 const PORT = 3000 || process.env.PORT;
 
 connectDB();
 
+const youtubeRoutes = require('./server/routes/youtubeRoutes');
+app.use('/', youtubeRoutes);
+
+const calendarRoutes = require('./server/routes/calendarRoutes');
+app.use('/', calendarRoutes);
+
+const currencyRate = require('./server/routes/currencyRate');
+app.use('/', currencyRate);
+
+const newsRoutes = require('./server/routes/newsRoutes');
+app.use('/', newsRoutes);
+
+const countriesRotes = require('./server/routes/countriesRoutes');
+app.use('/', countriesRotes);
+
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 app.use(cookieParser());
+app.use(methodOverride('_method'));
 
 app.use(session({
     secret: 'keyboard cat',
@@ -33,6 +49,7 @@ app.set('view engine', 'ejs');
 
 app.use('/', require('./server/routes/main'));
 app.use('/', require('./server/routes/admin'));
+
 
 app.listen(PORT, ()=> {
     console.log(`App listening on ${PORT}`);
